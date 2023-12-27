@@ -1,4 +1,4 @@
-SRC = main.c mapinit.c movement.c map_check.c exit.c
+SRC = main.c
 
 LIBFTDIR = include/libftfin/
 
@@ -9,17 +9,18 @@ CC = gcc
 NAME = push_swap
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) -Wall -Wextra -Werror -c $< -o $@
 
 $(NAME): $(SRC) $(LIBFT)
-	$(CC) $(SRC) -Lmlx_linux -lmlx_Linux -L/usr/lib -g -Imlx_linux -lXext -lX11 -lm -lz -L$(LIBFTDIR) -lft -o $(NAME)
+	$(CC) $(SRC) -L$(LIBFTDIR) -lft -o $(NAME)
 
 $(LIBFT):
 		$(MAKE) -C $(LIBFTDIR)
 
 all:		${NAME}
 
-clean :.
+re: fclean all
+clean :
 	$(MAKE) -C $(LIBFTDIR) fclean
 fclean: clean
-		rm $(NAME)
+		rm -rf $(NAME)

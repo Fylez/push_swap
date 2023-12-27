@@ -3,20 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liam <liam@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: fylez <fylez@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:19:15 by liam              #+#    #+#             */
-/*   Updated: 2023/11/07 18:19:38 by liam             ###   ########.fr       */
+/*   Updated: 2023/12/27 17:04:08 by fylez            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-struct list_a {
-    int data;
-    list_a* next;
-    list_a* prev;
-};
+# include "ft_printf.h"
+//# include "include/libftfin/libft.h"
+
+typedef struct s_list {
+	int				content;
+	struct s_list	*next;
+	struct s_list	*prev;
+}	t_list;
+
+void	ft_lstprint(t_list *lst);
 
 #endif
