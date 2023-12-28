@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fylez <fylez@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:19:15 by liam              #+#    #+#             */
-/*   Updated: 2023/12/27 17:04:08 by fylez            ###   ########.fr       */
+/*   Updated: 2023/12/28 20:23:53 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ typedef struct s_list {
 }	t_list;
 
 void	ft_lstprint(t_list *lst);
+void	checkdup(t_list *lst);
+void	ft_exit(t_list *lst, char *reason);
 
 #endif

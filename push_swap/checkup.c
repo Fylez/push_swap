@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   checkup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 09:57:01 by lzaengel          #+#    #+#             */
-/*   Updated: 2023/05/08 10:43:20 by lzaengel         ###   ########.fr       */
+/*   Created: 2023/12/28 18:12:26 by lzaengel          #+#    #+#             */
+/*   Updated: 2023/12/28 20:32:11 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int character)
+#include "push_swap.h"
+
+void	checkdup(t_list *lst)
 {
-	if (character >= 'a' && character <= 'z')
+	t_list	*tocheck;
+	t_list	*next;
+
+	tocheck = lst;
+	next = tocheck -> next;
+	while (tocheck)
 	{
-		character = character - 32;
+		next = tocheck -> next;
+		while (next)
+		{
+			if (tocheck -> content == next->content)
+				ft_exit(lst, "Duplicate numbers");
+			next = next->next;
+		}
+		tocheck = tocheck -> next;
 	}
-	return (character);
 }
-/*int main(void)
-{
-  printf("%d", ft_strupcase("JFIEOWJFO"));
-}*/

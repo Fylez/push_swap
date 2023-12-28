@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fylez <fylez@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 18:20:54 by liam              #+#    #+#             */
-/*   Updated: 2023/12/27 17:07:25 by fylez            ###   ########.fr       */
+/*   Created: 2023/12/28 18:12:34 by lzaengel          #+#    #+#             */
+/*   Updated: 2023/12/28 20:31:52 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_exit(t_list *lst)
+void	ft_exit(t_list *lst, char *reason)
 {
-	t_list *next;
+	t_list	*next;
 
+	ft_printf ("%s\n", reason);
 	if (lst == NULL)
 		exit(0);
 	while (lst)
@@ -26,6 +27,7 @@ void ft_exit(t_list *lst)
 	}
 	exit(0);
 }
+
 int	ft_isdigit(int character)
 {
 	if (character < '0' || character > '9')
@@ -35,7 +37,7 @@ int	ft_isdigit(int character)
 	return (1);
 }
 
-int	ft_atoi( const char *theString ,t_list *lst)
+int	ft_atoi( const char *theString, t_list *lst)
 {
 	long int		i;
 	long int		result;
@@ -59,7 +61,7 @@ int	ft_atoi( const char *theString ,t_list *lst)
 			i++;
 		}
 		else
-			ft_exit(lst);
+			ft_exit(lst, "Invalid characters");
 	}
 	return (result * neg);
 }
@@ -113,12 +115,15 @@ int	main(int argc, char **argv)
 	j = 1;
 	lst = 0;
 	nbr = 0;
+	if (argc == 1)
+		ft_exit (lst, "No argument");
 	while (argv[j])
 	{
 		nbr = ft_atoi(argv[j], lst);
 		ft_lstadd_back(&lst, ft_lstnew(nbr));
 		j++;
 	}
+	checkdup(lst);
 	ft_lstprint(lst);
-	ft_exit(lst);
+	ft_exit(lst, "End of program");
 }
