@@ -6,25 +6,13 @@
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 18:12:34 by lzaengel          #+#    #+#             */
-/*   Updated: 2023/12/30 18:16:45 by lzaengel         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:58:19 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_lstdel(t_list *lst)
-{
-	t_list *prev;
-	t_list *next;
 
-	lst = ft_lstlast(lst);
-	prev = lst -> prev;
-	next = lst -> next;
-	prev -> next = next;
-	next -> prev = prev;
-	lst -> prev = NULL;
-	lst -> next = NULL;
-}
 
 void	ft_exit(t_list *lst, char *reason)
 {
@@ -34,12 +22,16 @@ void	ft_exit(t_list *lst, char *reason)
 	if (lst == NULL)
 		exit(0);
 	next = lst -> next;
+	ft_printf("%d\n", lst->index);
 	free(lst);
-	while (next != NULL && lst -> index <= next -> index)
+	
+	while (next != NULL && next -> index != 1)
 	{
+		
 		lst = next;
 		next = lst -> next;
 		free(lst);
+		ft_printf("%d\n", lst->index);
 	}
 	exit(0);
 }
@@ -89,7 +81,7 @@ t_list	*ft_lstlast(t_list *lst)
 	if (lst == NULL)
 		return (NULL);
 	next = lst -> next;
-	while (next != NULL && lst -> index <= next -> index)
+	while (next != NULL && next -> index != 1)
 	{	
 		lst = next;
 		next = lst -> next;
@@ -129,11 +121,13 @@ void	ft_lstprint(t_list *lst)
 		return ;
 	next = lst -> next;
 	ft_printf("%d\n", lst->content);
-	while (next != NULL && lst -> index <= next -> index)
+	ft_printf("%d\n", lst->index);
+	while (next != NULL && next -> index != 1)
 	{
 		lst = next;
 		next = lst -> next;
 		ft_printf("%d\n", lst->content);
+		ft_printf("%d\n", lst->index);
 	}
 }
 
@@ -171,12 +165,12 @@ int	main(int argc, char **argv)
 		j++;
 	}
 	checkdup(lst);
-	last = ft_lstlast(lst);
+	last = ft_lstlast(lst);	
 	lst -> prev = last;
 	last -> next = lst;
 	ft_lstprint(lst);
-	sasb(lst);
-	pa(lst, &lst2);
-	ft_lstprint(lst2);
+	//sasb(lst);
+	//pa(lst, &lst2);
+	//ft_lstprint(lst2);
 	ft_exit(lst, "End of program");
 }
