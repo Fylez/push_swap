@@ -6,7 +6,7 @@
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 18:12:26 by lzaengel          #+#    #+#             */
-/*   Updated: 2023/12/28 20:32:11 by lzaengel         ###   ########.fr       */
+/*   Updated: 2024/01/04 17:41:23 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	checkdup(t_list *lst)
 	t_list	*next;
 
 	tocheck = lst;
-	next = tocheck -> next;
 	while (tocheck)
 	{
 		next = tocheck -> next;

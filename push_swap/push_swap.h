@@ -6,7 +6,7 @@
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:19:15 by liam              #+#    #+#             */
-/*   Updated: 2023/12/30 18:16:47 by lzaengel         ###   ########.fr       */
+/*   Updated: 2024/01/05 01:42:25 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdel(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	pa(t_list *lst, t_list **lst2);
-
+void	ra(t_list **lst);
+void	rra(t_list **lst);
 #endif

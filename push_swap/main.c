@@ -6,32 +6,32 @@
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 18:12:34 by lzaengel          #+#    #+#             */
-/*   Updated: 2024/01/03 16:58:19 by lzaengel         ###   ########.fr       */
+/*   Updated: 2024/01/05 01:42:14 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 
-
 void	ft_exit(t_list *lst, char *reason)
 {
 	t_list	*next;
 
-	ft_printf ("%s\n", reason);
 	if (lst == NULL)
-		exit(0);
-	next = lst -> next;
-	ft_printf("%d\n", lst->index);
-	free(lst);
-	
-	while (next != NULL && next -> index != 1)
 	{
-		
-		lst = next;
-		next = lst -> next;
+		exit(0);
+	}
+
+	ft_printf ("%s\n", reason);
+	if (lst->prev)
+	{
+		lst->prev->next = NULL;
+	}
+	while (lst != NULL)
+	{
+		next = lst->next;
 		free(lst);
-		ft_printf("%d\n", lst->index);
+		lst = next;
 	}
 	exit(0);
 }
@@ -76,17 +76,16 @@ int	ft_atoi( const char *theString, t_list *lst)
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	t_list	*next;
+	t_list	*temp;
 
-	if (lst == NULL)
+	if (!lst)
 		return (NULL);
-	next = lst -> next;
-	while (next != NULL && next -> index != 1)
+	temp = lst;
+	while (temp -> next && temp -> next != lst)
 	{	
-		lst = next;
-		next = lst -> next;
+		temp = temp -> next;
 	}
-	return (lst);
+	return (temp);
 }
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
@@ -98,13 +97,12 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	if (!*lst)
 	{
 		new -> index = 1;
+		new->prev = NULL;
 		*lst = new;
 	}
 	else
 	{
-		ft_printf("%s\n", "TEST1");
 		prv = ft_lstlast(*lst);
-		ft_printf("%s\n", "TEST2");
 		prv -> next = new;
 		new -> prev = prv;
 		indexlast = prv -> index;
@@ -115,19 +113,18 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 
 void	ft_lstprint(t_list *lst)
 {
-	t_list	*next;
+	t_list	*temp;
 
 	if (lst == NULL)
 		return ;
-	next = lst -> next;
-	ft_printf("%d\n", lst->content);
-	ft_printf("%d\n", lst->index);
-	while (next != NULL && next -> index != 1)
+	temp = lst;
+	ft_printf("%d\n", temp->content);
+	ft_printf("%d\n", temp->index);
+	while (temp -> next && temp -> next != lst)
 	{
-		lst = next;
-		next = lst -> next;
-		ft_printf("%d\n", lst->content);
-		ft_printf("%d\n", lst->index);
+		temp = temp-> next;
+		ft_printf("%d\n", temp->content);
+		ft_printf("%d\n", temp->index);
 	}
 }
 
@@ -168,6 +165,8 @@ int	main(int argc, char **argv)
 	last = ft_lstlast(lst);	
 	lst -> prev = last;
 	last -> next = lst;
+	ft_lstprint(lst);
+	rra(&lst);
 	ft_lstprint(lst);
 	//sasb(lst);
 	//pa(lst, &lst2);

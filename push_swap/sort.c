@@ -6,7 +6,7 @@
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 17:17:47 by lzaengel          #+#    #+#             */
-/*   Updated: 2024/01/03 16:46:32 by lzaengel         ###   ########.fr       */
+/*   Updated: 2024/01/05 01:44:59 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,60 @@ void	sasb(t_list *lst)
 	next -> content = c;
 }
 
+void	ss(t_list *lst, t_list *lst2)
+{
+	sasb(lst);
+	sasb(lst2);
+}
+
 void	pa(t_list *lst, t_list **lst2)
 {
 	t_list	*topush;
 
 	topush = ft_lstlast(lst);
-	ft_printf("%s\n", "TEST1");
 	ft_lstdel(lst);
-	ft_printf("%s\n", "TEST2");
 	ft_lstadd_back(lst2, topush);
-	//ft_printf("%d\n", topush->content );
-	//ft_lstprint(lst2);
+}
+
+void	ra(t_list **lst)
+{
+	t_list	*temp;
+	int		index;
+
+	*lst = (*lst)->next;
+	temp = *lst;
+	index = 1;
+	while (temp && (temp != *lst || index == 1))
+	{
+		temp->index = index++;
+		ft_printf("%d\n", temp->index);
+		temp = temp->next;
+	}
+}
+
+void	rra(t_list **lst)
+{
+	t_list	*temp;
+	int		index;
+
+	*lst = (*lst)->prev;
+	temp = *lst;
+	index = 1;
+	while (temp && (temp != *lst || index == 1))
+	{
+		temp->index = index++;
+		ft_printf("%d\n", temp->index);
+		temp = temp->next;
+	}
+}
+void	rr(t_list **lst, t_list **lst2)
+{
+	ra(lst);
+	ra(lst2);
+}
+
+void	rrr(t_list **lst, t_list **lst2)
+{
+	rra(lst);
+	rra(lst2);
 }
