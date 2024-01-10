@@ -6,7 +6,7 @@
 /*   By: lzaengel <lzaengel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 18:12:34 by lzaengel          #+#    #+#             */
-/*   Updated: 2024/01/05 01:42:14 by lzaengel         ###   ########.fr       */
+/*   Updated: 2024/01/10 03:03:56 by lzaengel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,21 +155,20 @@ int	main(int argc, char **argv)
 	nbr = 0;
 	if (argc == 1)
 		ft_exit (lst, "No argument");
-	while (argv[j])
+	j = argc - 1;
+	while (j > 0)
 	{
 		nbr = ft_atoi(argv[j], lst);
 		ft_lstadd_back(&lst, ft_lstnew(nbr));
-		j++;
+		j--;
 	}
 	checkdup(lst);
 	last = ft_lstlast(lst);	
 	lst -> prev = last;
 	last -> next = lst;
 	ft_lstprint(lst);
-	rra(&lst);
+	radixsort(&lst, &lst2);
+	ft_printf("FIN\n");
 	ft_lstprint(lst);
-	//sasb(lst);
-	//pa(lst, &lst2);
-	//ft_lstprint(lst2);
 	ft_exit(lst, "End of program");
 }
